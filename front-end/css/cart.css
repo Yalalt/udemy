@@ -1,0 +1,10 @@
+main {
+  max-width: 1350px;
+  width: calc(100% - 40px);
+  margin: auto;
+  padding: 0 20px;
+}
+
+.flex-start {
+  margin: 0 auto;
+}

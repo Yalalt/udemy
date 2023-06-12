@@ -1,0 +1,17 @@
+:root {
+  --main-text: #3c3b37;
+  --inactive-text: #73726c;
+  --header-btn: #0f7c90;
+  --sub-text: #707070;
+  --star-text: #be5a0e;
+  --bestseller-container: #ffe799;
+  --bestseller-text: #593d00;
+  --search-background: #fbfbf8;
+  --line: #c2c2c2;
+  --sub-li-text: #adadad;
+  --shadow: rgba(0, 0, 0, 0.15);
+  --primary-white: #fff;
+  --submit-green: #2ecc71;
+  --light-green: #4be38b;
+  --login-red: #ec5252;
+}

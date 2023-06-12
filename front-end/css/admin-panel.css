@@ -1,0 +1,236 @@
+@import url("color.css");
+
+.profit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.profit-list {
+  padding: 0 10%;
+  border-left: solid 1px var(--line);
+}
+
+.profit-list i {
+  margin-left: 10px;
+}
+
+.fa-sort-up {
+  color: #27ae60;
+}
+
+.fa-sort-down {
+  color: #e74c3c;
+}
+
+.profit-title {
+  font-size: 12px;
+  color: var(--sub-li-text);
+  display: inline;
+}
+
+.profit-number {
+  font-size: 23px;
+  margin-top: 0;
+}
+
+.profit-list:first-child {
+  border-left: none;
+}
+
+.number-statistic-container {
+  display: flex;
+  justify-content: space-evenly;
+  border-radius: 10px;
+  margin: 20px 0;
+  max-height: 100px;
+}
+
+.statistic-title {
+  font-size: 12px;
+  color: var(--inactive-text);
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.statistic-number {
+  font-size: 23px;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.teachers-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.teachers-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+}
+
+.teachers-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  margin: 20px 0;
+  padding: 0px 10px;
+}
+
+.teachers-more-text {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: var(--header-btn);
+}
+
+.teachers-list-img {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+}
+
+.teachers-list-name {
+  position: absolute;
+  margin-left: 50px;
+}
+
+.teachers-list-number {
+  background-color: var(--light-green);
+  padding: 7px 15px;
+  color: var(--primary-white);
+  border-radius: 10px;
+}
+
+.direction-col {
+  flex-direction: column;
+  align-items: initial;
+  box-shadow: none;
+  margin: 0;
+}
+
+.direction-col:first-child {
+  margin-top: 20px;
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+}
+
+.diff-img {
+  height: 25px;
+  object-fit: contain;
+}
+
+.diff-name {
+  margin-left: 10px;
+}
+
+.progress {
+  width: 100%;
+  height: 7px;
+  background-color: var(--submit-green);
+  border-radius: 50px;
+}
+
+.progress-93 {
+  width: 93%;
+}
+
+.progress-73 {
+  width: 73%;
+}
+
+.progress-13 {
+  width: 13%;
+}
+
+.diff-percent {
+  margin: 10px 0 10px 5px;
+  padding: 0;
+}
+
+.shadow-25-3 {
+  -webkit-box-shadow: 0px 0px 25px 3px var(--shadow);
+  -moz-box-shadow: 0px 0px 25px 3px var(--shadow);
+  box-shadow: 0px 0px 25px 3px var(--shadow);
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 1061px) and (min-width: 501px) {
+  .profit-list {
+    padding: 0 5%;
+  }
+  .profit-title {
+    font-size: 10px;
+  }
+  .profit-number {
+    font-size: 16px;
+  }
+  .statistic-title {
+    font-size: 11px;
+  }
+  .statistic-number {
+    font-size: 18px;
+  }
+  .teachers-title {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .profit-list {
+    padding: 0 15px;
+  }
+  .profit-title {
+    font-size: 10px;
+  }
+  .profit-number {
+    font-size: 14px;
+  }
+  .statistic-title {
+    font-size: 8px;
+  }
+  .statistic-number {
+    font-size: 14px;
+  }
+  .teachers-item {
+    margin: 15px 0;
+  }
+  .teachers-title {
+    font-size: 18px;
+  }
+  .teachers-list-name {
+    font-size: 12px;
+    margin-left: 35px;
+  }
+  .teachers-list-img {
+    width: 24px;
+    height: 24px;
+  }
+  .teachers-list-number {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  .diff-img {
+    height: 20px;
+  }
+  .diff-name {
+    font-size: 12px;
+  }
+  .progress {
+    height: 5px;
+  }
+  .diff-percent {
+    margin: 5px 0 5px 3px;
+    font-size: 12px;
+  }
+}

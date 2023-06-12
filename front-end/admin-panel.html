@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="language" content="english" />
+    <meta name="author" content="Udemy" />
+    <meta name="designer" content="Udemy" />
+    <meta name="publisher" content="Udemy" />
+
+    <!--Search Engine Optimization Meta Tags-->
+    <meta name="description" content="Udemy" />
+    <meta
+      name="keywords"
+      content="Software Engineer, Product Manager, Project Manager, Udemy, Udemy.mn"
+    />
+
+    <!--Optional Meta Tags-->
+    <meta name="distribution" content="web" />
+    <meta name="web_author" content="Udemy" />
+    <meta name="title" content="Udemy" />
+    <meta name="copyright" content="Copyright 2020" />
+    <meta name="reply-to" content="udemy_mongol@gmail.com" />
+    <meta name="abstract" content="Web technology - Udemy" />
+    <meta name="city" content="Ulaanbaatar" />
+    <meta name="country" content="Mongolia" />
+    <meta name="distribution" content="global" />
+    <meta name="classification" content="Udemy" />
+
+    <!--Meta Tags for HTML pages on Mobile-->
+    <meta name="format-detection" content="telephone=yes" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Udemy</title>
+    <!-- favicon started -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/favicon/favicon-196x196.png"
+      sizes="196x196"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/favicon/favicon-32x32.png"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/favicon/favicon-16x16.png"
+      sizes="16x16"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/favicon/favicon-128.png"
+      sizes="128x128"
+    />
+    <!-- favicon end -->
+    <link rel="stylesheet" href="css/panel.css" />
+    <link rel="stylesheet" href="css/admin-panel.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </head>
+  <body>
+    <nav>
+      <button class="nav-btn nav-active">
+        <i class="fas fa-tachometer-alt"></i>
+        Үндсэн
+      </button>
+      <button class="nav-btn">
+        <i class="fas fa-hand-holding-usd"></i>
+        Гүйлгээ
+      </button>
+      <button class="nav-btn">
+        <i class="fas fa-chart-line"></i>
+        Мэдэгдэл
+      </button>
+      <button class="nav-btn">
+        <i class="fas fa-chalkboard-teacher"></i>
+        Багш
+      </button>
+      <button class="nav-btn">
+        <i class="fas fa-user-graduate"></i>
+        Сурагч
+      </button>
+      <button class="nav-btn">
+        <i class="fas fa-video"></i>
+        Сургалт
+      </button>
+      <button class="nav-btn">
+        <i class="fas fa-sign-out-alt"></i>
+        Гарах
+      </button>
+    </nav>
+    <main>
+      <section class="header-container fit">
+        <button class="nav-icon-btn bars-container" aria-label="menu">
+          <i class="fas fa-bars nav-icon"></i>
+        </button>
+        <div class="header-left">
+          <h1 class="panel-nav-title">Хяналтын самбар</h1>
+          <p class="welcome-text">Тавтай морил, Наранбат</p>
+        </div>
+        <div class="header-right">
+          <img src="assets/man1.png" alt="profile" />
+          <p class="username-text">Наранбат М.</p>
+        </div>
+      </section>
+      <section class="profit-container fit">
+        <div class="profit-list">
+          <h1 class="profit-title">АШИГ</h1>
+          <i class="fas fa-sort-up"></i>
+          <p class="profit-number">₮5,000,000</p>
+        </div>
+        <div class="profit-list">
+          <h1 class="profit-title">ОРЛОГО</h1>
+          <i class="fas fa-sort-up"></i>
+          <p class="profit-number">₮9,500,000</p>
+        </div>
+        <div class="profit-list">
+          <h1 class="profit-title">ЗАРЛАГА</h1>
+          <i class="fas fa-sort-down"></i>
+          <p class="profit-number">₮4,500,000</p>
+        </div>
+      </section>
+      <section class="number-statistic-container fit shadow">
+        <div class="statistic-list">
+          <h1 class="statistic-title">Бизнес</h1>
+          <p class="statistic-number">475</p>
+        </div>
+        <div class="statistic-list">
+          <h1 class="statistic-title">Хувь хүний хөгжил</h1>
+          <p class="statistic-number">431</p>
+        </div>
+        <div class="statistic-list">
+          <h1 class="statistic-title">IT & Software</h1>
+          <p class="statistic-number">174</p>
+        </div>
+        <div class="statistic-list">
+          <h1 class="statistic-title">Photograph</h1>
+          <p class="statistic-number">475</p>
+        </div>
+        <div class="statistic-list">
+          <h1 class="statistic-title">Дизайн</h1>
+          <p class="statistic-number">134</p>
+        </div>
+      </section>
+      <section class="teachers-container half-fit">
+        <div class="teachers-header">
+          <h2 class="teachers-title">Багш нар</h2>
+          <button class="teachers-more-text">Бүгдийг үзэх</button>
+        </div>
+        <div class="teachers-list-container">
+          <div class="teachers-item shadow-25-3">
+            <img src="assets/man1.png" alt="man" class="teachers-list-img" />
+            <p class="teachers-list-name">Гантөмөр ОЮУНБАТ</p>
+            <p class="teachers-list-number">3071 <i class="fas fa-user"></i></p>
+          </div>
+          <div class="teachers-item shadow-25-3">
+            <img
+              src="assets/woman1.jpg"
+              alt="woman"
+              class="teachers-list-img"
+            />
+            <p class="teachers-list-name">Цэцэг ДУЛАМ</p>
+            <p class="teachers-list-number">2515 <i class="fas fa-user"></i></p>
+          </div>
+          <div class="teachers-item shadow-25-3">
+            <img
+              src="assets/woman2.jpg"
+              alt="woman"
+              class="teachers-list-img"
+            />
+            <p class="teachers-list-name">Гэрэлээ ХАЛИУН</p>
+            <p class="teachers-list-number">312 <i class="fas fa-user"></i></p>
+          </div>
+          <div class="teachers-item shadow-25-3">
+            <img src="assets/man2.jpg" alt="man" class="teachers-list-img" />
+            <p class="teachers-list-name">Чулуун АРИУНБОЛД</p>
+            <p class="teachers-list-number">150 <i class="fas fa-user"></i></p>
+          </div>
+        </div>
+      </section>
+      <section class="difference-container half-fit">
+        <div class="teachers-header">
+          <h2 class="teachers-title">Харьцуулалт</h2>
+          <button class="teachers-more-text">Бүгдийг үзэх</button>
+        </div>
+        <div class="teachers-list-container shadow-25-3 border-10">
+          <div class="teachers-item direction-col">
+            <div class="item-header">
+              <img src="assets/IT.jpg" alt="IT" class="diff-img" />
+              <p class="diff-name">IT & Software</p>
+            </div>
+            <div class="item-header">
+              <span class="progress progress-93"></span>
+              <p class="diff-percent">93%</p>
+            </div>
+          </div>
+          <div class="teachers-item direction-col">
+            <div class="item-header">
+              <img
+                src="assets/human.jpg"
+                alt="Human develope"
+                class="diff-img"
+              />
+              <p class="diff-name">Хувь хүний хөгжил</p>
+            </div>
+            <div class="item-header">
+              <span class="progress progress-73"></span>
+              <p class="diff-percent">73%</p>
+            </div>
+          </div>
+          <div class="teachers-item direction-col">
+            <div class="item-header">
+              <img src="assets/design.jpg" alt="Design" class="diff-img" />
+              <p class="diff-name">Дизайн</p>
+            </div>
+            <div class="item-header">
+              <span class="progress progress-13"></span>
+              <p class="diff-percent">13%</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
