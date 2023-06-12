@@ -1,12 +1,18 @@
 package com.mongol.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "admin")
 public class Admin {
 
-    private int id;
+    @Id
+    private Integer id;
+
     private String name, email, pass, token;
 
     public Admin() {
-        this(0, "","","","");
+        this(1, "", "", "", "");
     }
 
     public Admin(int id, String name, String email, String pass, String token) {
@@ -17,13 +23,12 @@ public class Admin {
         this.token = token;
     }
 
-
-    public int getId() {
-        return this.id;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Integer getId() {
+        return this.id;
     }
 
     public String getName() {
