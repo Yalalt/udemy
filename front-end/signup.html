@@ -101,7 +101,7 @@
     <!-- Header End -->
     <!-- Body starting -->
     <main>
-      <form >
+      <form>
         <label class="signup-container">
         <h2 class="signup-title">Udemy account -руугаа нэвтрэх</h2>
         <hr />
@@ -115,19 +115,19 @@
           <button class="login-icon-btn" aria-label="name">
             <i class="fas fa-user"></i>
           </button>
-          <input type="name" placeholder="Овог нэр" class="login-input" />
+          <input type="name" placeholder="Овог нэр" class="login-input" id="name" />
         </div>
         <div class="login-input-container">
           <button class="login-icon-btn" aria-label="email">
             <i class="far fa-envelope"></i>
           </button>
-          <input type="email" placeholder="Цахим шуудан" class="login-input" />
+          <input type="email" placeholder="Цахим шуудан" class="login-input" id="email" />
         </div>
         <div class="login-input-container">
           <button class="login-icon-btn" aria-label="password">
             <i class="fas fa-lock"></i>
           </button>
-          <input type="password" placeholder="Нууц үг" class="login-input" />
+          <input type="password" placeholder="Нууц үг" class="login-input" id="password"/>
         </div>
         <div class="signup-pattern">
           <hr />
@@ -135,7 +135,7 @@
           <hr />
           <hr />
         </div>
-        <a href="teacher-panel.html" class="login-button">Бүртгүүлэх</a>
+        <button type="button" class="login-button" onclick="formHandler()">Бүртгүүлэх</button>
       </form>
     </label>
     </main>
@@ -148,5 +148,33 @@
       <p class="footer-copyright-text">&copy; 2020 Udemy, Inc</p>
     </footer>
     <!-- Footer end -->
+    <script>
+      function formHandler() {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        var raw = JSON.stringify({
+          "name": name,
+          "email": email,
+          "pass": password
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/user", requestOptions)
+          .then(response => response.json())
+          .then(result => result.success ? alert("Амжилттай") : alert("Амжилтгүй!"))
+          .catch(error => console.log('error', error));
+      }
+    </script>
   </body>
 </html>

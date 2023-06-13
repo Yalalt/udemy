@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.mongol.model.AdminRepository;
+import com.mongol.repo.AdminRepository;
 
 @SpringBootApplication
 @EnableMongoRepositories(basePackageClasses = AdminRepository.class)
