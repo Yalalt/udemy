@@ -18,12 +18,13 @@ import schema.AdminSchema;
 import schema.LoginSchema;
 import schema.ResponseSchema;
 import schema.UserSchema;
+import util.PasswordUtils;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class MainController {
-    @Autowired
-    private AdminRepository adminRepo;
+	@Autowired
+	private AdminRepository adminRepo;
 	@Autowired
 	private CourseRepository courseRepo;
 	@Autowired
@@ -33,7 +34,7 @@ public class MainController {
 	@Autowired
 	private PurchaseRepository purchaseRepository;
 
-    @GetMapping("/")
+	@GetMapping("/")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return String.format("<h3>Hello %s! Welcome to Spring</h3>", name);
 	}
@@ -41,8 +42,7 @@ public class MainController {
 	@GetMapping("/admin")
 	public String getAdmin() {
 		try {
-			
-			
+
 			return String.format("Successfull");
 		} catch (Exception e) {
 			return String.format("Aldaa garlaa: " + e.getMessage());
@@ -62,7 +62,7 @@ public class MainController {
 			return ResponseSchema.getInstance(false, e.getMessage());
 		}
 	}
-	
+
 	@GetMapping("/course")
 	public String getCourse() {
 		try {
@@ -90,7 +90,7 @@ public class MainController {
 	@GetMapping("/user")
 	public String getUser() {
 		try {
-			
+
 			return String.format("User Data Receive");
 		} catch (Exception e) {
 			return String.format("Aldaa garlaa: " + e.getMessage());
@@ -103,7 +103,10 @@ public class MainController {
 			User user = new User();
 			user.setName(userSchema.getName());
 			user.setEmail(userSchema.getEmail());
-			user.setPass(userSchema.getPass());
+			String salt = PasswordUtils.getSalt(10);
+			user.setSalt(salt);
+			user.setPass(PasswordUtils.generateSecurePassword(userSchema.getPass(), salt));
+
 			userRepo.insert(user);
 			return ResponseSchema.getInstance(true);
 		} catch (Exception e) {
@@ -117,9 +120,9 @@ public class MainController {
 			List<User> userList = new ArrayList<>();
 
 			userList = userRepo.findAll();
-			for(User user : userList) {
-				if(loginSchema.getEmail().equals(user.getEmail())) {
-					if(loginSchema.getPass().equals(user.getPass())) {
+			for (User user : userList) {
+				if (loginSchema.getEmail().equals(user.getEmail())) {
+					if (PasswordUtils.verifyUserPassword(loginSchema.getPass(), user.getPass(), user.getSalt())) {
 						return ResponseSchema.getInstance(true);
 					}
 				}
@@ -129,7 +132,7 @@ public class MainController {
 			return ResponseSchema.getInstance(false, e.getMessage());
 		}
 	}
-	
+
 	@GetMapping("/purchase")
 	public String getPurchase() {
 		try {

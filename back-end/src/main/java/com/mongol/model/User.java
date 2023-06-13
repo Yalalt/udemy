@@ -9,7 +9,7 @@ import util.Util;
 public class User {
     @Id
     private Long id;
-    private String name, email, pass, token;
+    private String name, email, pass, token, salt;
     private Boolean isTeacher;
 
     public User() {
@@ -77,6 +77,15 @@ public class User {
 
     public void setIsTeacher(Boolean isTeacher) {
         this.isTeacher = isTeacher;
+    }
+
+
+    public String getSalt() {
+        return this.salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 
 }
