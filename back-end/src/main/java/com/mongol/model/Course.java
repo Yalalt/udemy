@@ -8,7 +8,7 @@ import util.Util;
 
 @Document(collection = "course")
 public class Course {
-    
+
     @Id
     private Long id;
     private String name, imgUrl;
@@ -16,12 +16,9 @@ public class Course {
     private Long userid;
     private LocalDate createdDate;
 
-
-    // public Course() {
-    //     this("", "", 0, 0, 0, LocalDate.now());
-    // }
-
-
+    public Course() {
+        this("", "", 0, 0, 0l, LocalDate.now());
+    }
 
     public Course(String name, String imgUrl, int price, int realPrice, Long userid, LocalDate createdDate) {
         this.id = Util.generateUniqueLong();
@@ -32,7 +29,6 @@ public class Course {
         this.userid = userid;
         this.createdDate = createdDate;
     }
-    
 
     public Long getId() {
         return this.id;
@@ -89,6 +85,5 @@ public class Course {
     public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
     }
-    
 
 }

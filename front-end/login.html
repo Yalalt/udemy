@@ -61,7 +61,7 @@
     />
     <!-- favicon end -->
     <link rel="stylesheet" href="css/main.css" />
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/9a12ec8366.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -100,31 +100,43 @@
     </header>
     <!-- Header End -->
     <main>
-      <from class="login-container">
+      <form class="login-container">
         <label class="login-container">
-        <h2 class="login-title">Udemy account -руугаа нэвтрэх</h2>
-        <hr />
-        <button class="login-facebook">
-          <i class="fab fa-facebook-f"></i>Фейсбүүкээр үргэлжлүүлэх
-        </button>
-        <button class="login-google">
-          <i class="fab fa-google"></i>Гооглээр үргэлжлүүлэх
-        </button>
-        <div class="login-input-container">
-          <button class="login-icon-btn" aria-label="email">
-            <i class="far fa-envelope"></i>
+          <h2 class="login-title">Udemy account -руугаа нэвтрэх</h2>
+          <hr />
+          <button class="login-facebook">
+            <i class="fab fa-facebook-f"></i>Фейсбүүкээр үргэлжлүүлэх
           </button>
-          <input type="email" placeholder="Цахим шуудан" class="login-input" />
-        </div>
-        <div class="login-input-container">
-          <button class="login-icon-btn" aria-label="password">
-            <i class="fas fa-lock"></i>
+          <button class="login-google">
+            <i class="fab fa-google"></i>Гооглээр үргэлжлүүлэх
           </button>
-          <input type="password" placeholder="Нууц үг" class="login-input" />
-        </div>
-        <a href="admin-panel.html" class="login-button">Нэвтрэх</a>
-      </label>
-      </from>
+          <div class="login-input-container">
+            <button class="login-icon-btn" aria-label="email">
+              <i class="far fa-envelope"></i>
+            </button>
+            <input
+              type="email"
+              placeholder="Цахим шуудан"
+              class="login-input"
+              id="email"
+            />
+          </div>
+          <div class="login-input-container">
+            <button class="login-icon-btn" aria-label="password">
+              <i class="fas fa-lock"></i>
+            </button>
+            <input
+              type="password"
+              placeholder="Нууц үг"
+              class="login-input"
+              id="password"
+            />
+          </div>
+          <button type="button" class="login-button" onclick="formHandler()">
+            Нэвтрэх
+          </button>
+        </label>
+      </form>
     </main>
     <!-- Footer starting -->
     <footer>
@@ -135,4 +147,37 @@
     </footer>
     <!-- Footer end -->
   </body>
+  <script>
+    function formHandler() {
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      var raw = JSON.stringify({
+        email: email,
+        pass: password,
+      });
+
+      var requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+      };
+
+      fetch("http://localhost:8080/userlogin", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          if (result.success) {
+            localStorage.setItem("token", result.token);
+            alert("Амжилттай");
+          } else {
+            alert("Амжилтгүй!");
+          }
+        })
+        .catch((error) => console.log("error", error));
+    }
+  </script>
 </html>

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.mongol.model.Purchase;
 
 @Repository
-public interface PurchaseRepository extends MongoRepository<Purchase, String> {
+public interface PurchaseRepository extends MongoRepository<Purchase, Long> {
     
 }

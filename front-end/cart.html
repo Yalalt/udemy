@@ -66,7 +66,7 @@
     <!-- favicon end -->
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/cart.css" />
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/9a12ec8366.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <!-- Header Starting -->
@@ -243,5 +243,15 @@
       <p class="footer-copyright-text">&copy; 2020 Udemy, Inc</p>
     </footer>
     <!-- Footer end -->
+    <script>
+      mainFunction();
+
+      function mainFunction(){
+        if(document.cookie){
+        } else {
+          window.location.replace("login.html");
+        }
+      }
+    </script>
   </body>
 </html>

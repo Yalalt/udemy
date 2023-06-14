@@ -14,9 +14,9 @@ public class Purchase {
     private LocalDate purchaseDate;
     private Long courseid, userid;
 
-    // public Purchase() {
-    //     this(LocalDate.now(), 0, 0);
-    // }
+    public Purchase() {
+        this(LocalDate.now(), 0l, 0l);
+    }
 
     public Purchase(LocalDate purchaseDate, Long courseid, Long userid) {
         this.id = Util.generateUniqueLong();

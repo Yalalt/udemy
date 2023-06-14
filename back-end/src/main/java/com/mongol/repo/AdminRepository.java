@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.mongol.model.Admin;
 
 @Repository
-public interface AdminRepository extends MongoRepository<Admin, String> {
+public interface AdminRepository extends MongoRepository<Admin, Long> {
     
 }

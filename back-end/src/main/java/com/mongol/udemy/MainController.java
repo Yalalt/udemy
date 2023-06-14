@@ -15,6 +15,9 @@ import com.mongol.model.*;
 import com.mongol.repo.*;
 
 import schema.AdminSchema;
+import schema.CourseSchema;
+import schema.LessonSchema;
+import schema.LoginResponse;
 import schema.LoginSchema;
 import schema.ResponseSchema;
 import schema.UserSchema;
@@ -40,12 +43,11 @@ public class MainController {
 	}
 
 	@GetMapping("/admin")
-	public String getAdmin() {
+	public ResponseSchema getAdmin() {
 		try {
-
-			return String.format("Successfull");
+			return ResponseSchema.getInstance(true, "admin name");
 		} catch (Exception e) {
-			return String.format("Aldaa garlaa: " + e.getMessage());
+			return ResponseSchema.getInstance(false, e.getMessage());
 		}
 	}
 
@@ -66,24 +68,98 @@ public class MainController {
 	@GetMapping("/course")
 	public String getCourse() {
 		try {
-			// Course course = new Course();
-			// course.setName("Course name");
-			// courseRepo.insert(course);
 			return String.format("Successfull");
 		} catch (Exception e) {
 			return String.format("Aldaa garlaa: " + e.getMessage());
 		}
 	}
 
+	@PostMapping("/course")
+	public ResponseSchema addCourse(@RequestBody CourseSchema courseSchema) {
+		try {
+			if (courseSchema.getName() == null)
+				throw new Exception("Заавал сургалтын нэр оруулах шаардлагатай");
+			else if (courseSchema.getImgUrl() == null || courseSchema.getPrice() == null
+					|| courseSchema.getRealPrice() == null)
+				throw new Exception("Заавал мэдээллээ бүрэн оруулах шаардлагатай");
+
+			Course course = new Course();
+			course.setName(courseSchema.getName());
+			course.setImgUrl(courseSchema.getImgUrl());
+			course.setPrice(courseSchema.getPrice());
+			course.setRealPrice(courseSchema.getRealPrice());
+
+			boolean isUserExist = false;
+			List<User> userList = new ArrayList<>();
+			userList = userRepo.findAll();
+			for (User user : userList) {
+				if (user.getToken().equals(courseSchema.getToken()) && courseSchema.getToken().length() > 10) {
+					course.setUserid(user.getId());
+					isUserExist = true;
+					break;
+				}
+			}
+
+			if (isUserExist)
+				courseRepo.insert(course);
+			else
+				throw new Exception("Нэвтрэх шаардлагатай");
+
+			return ResponseSchema.getInstance(true);
+		} catch (Exception e) {
+			return ResponseSchema.getInstance(false, e.getMessage());
+		}
+	}
+
 	@GetMapping("/lesson")
 	public String getLesson() {
 		try {
-			// Lesson lesson = new Lesson();
-			// lesson.setName("Lesson name");
-			// lessonRepo.insert(lesson);
-			return String.format("Successfull");
+			return String.format("Successfull get lesson");
 		} catch (Exception e) {
 			return String.format("Aldaa garlaa: " + e.getMessage());
+		}
+	}
+
+	/**
+	 * Add a new lesson
+	 * 
+	 * @param lessonSchema lesson schema
+	 * @course is the result of find by use has course id
+	 * @return ResponseSchema.getInstance(true) when successful else
+	 *         ResponseSchema.getInstance(false)
+	 */
+	@PostMapping("/lesson")
+	public ResponseSchema addLesson(@RequestBody LessonSchema lessonSchema) {
+		try {
+			Lesson lesson = new Lesson();
+
+			boolean isUserExist = false;
+			List<User> userList = new ArrayList<>();
+			userList = userRepo.findAll();
+			for (User user : userList) {
+				if (user.getToken().equals(lessonSchema.getToken()) && lessonSchema.getToken().length() > 10) {
+					Course course = courseRepo.findById(lessonSchema.getCourseid()).get();
+					if (course.getUserid().equals(user.getId())) {
+						isUserExist = true;
+						break;
+					}
+				}
+			}
+
+			if (!isUserExist)
+				throw new Exception("Нэвтрэх шаардлагатай");
+				
+
+			lesson.setIsFree(lessonSchema.getIsFree());
+			lesson.setName(lessonSchema.getName());
+			lesson.setTime(lessonSchema.getTime());
+			lesson.setVideoUrl(lessonSchema.getVideoUrl());
+			lesson.setCourseid(lessonSchema.getCourseid());
+
+			lessonRepo.insert(lesson);
+			return ResponseSchema.getInstance(true);
+		} catch (Exception e) {
+			return ResponseSchema.getInstance(false, e.getMessage());
 		}
 	}
 
@@ -115,21 +191,26 @@ public class MainController {
 	}
 
 	@PostMapping("/userlogin")
-	public ResponseSchema loginUser(@RequestBody LoginSchema loginSchema) {
+	public LoginResponse loginUser(@RequestBody LoginSchema loginSchema) {
 		try {
 			List<User> userList = new ArrayList<>();
-
 			userList = userRepo.findAll();
+
 			for (User user : userList) {
 				if (loginSchema.getEmail().equals(user.getEmail())) {
 					if (PasswordUtils.verifyUserPassword(loginSchema.getPass(), user.getPass(), user.getSalt())) {
-						return ResponseSchema.getInstance(true);
+						String saltString = PasswordUtils.getSalt(10);
+						String tokenString = PasswordUtils.generateSecurePassword(user.getEmail() + user.getPass(),
+								saltString);
+						user.setToken(tokenString);
+						userRepo.save(user);
+						return new LoginResponse(tokenString);
 					}
 				}
 			}
 			throw new Exception("Цахим шуудан эсвэл нууц үг таарахгүй байна");
 		} catch (Exception e) {
-			return ResponseSchema.getInstance(false, e.getMessage());
+			return new LoginResponse(false, e.getMessage());
 		}
 	}
 

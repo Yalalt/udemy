@@ -14,12 +14,12 @@ public class Lesson {
     private Long courseid;
     private Boolean isFree;
 
-    // public Lesson() {
-    //     this("", "", 0, 0, false);
-    // }
+    public Lesson() {
+        this("", "", 0, 0l, false);
+    }
 
 
-    public Lesson(Long id, String name, String videoUrl, Integer time, Long courseid, Boolean isFree) {
+    public Lesson(String name, String videoUrl, Integer time, Long courseid, Boolean isFree) {
         this.id = Util.generateUniqueLong();
         this.name = name;
         this.videoUrl = videoUrl;
