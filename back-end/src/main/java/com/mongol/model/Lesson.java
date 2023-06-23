@@ -1,40 +1,23 @@
 package com.mongol.model;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import util.Util;
 
 @Document(collection = "lesson")
 public class Lesson {
-    @Id
-    private Long id;
+
     private String name, videoUrl;
     private Integer time;
-    private Long courseid;
     private Boolean isFree;
 
     public Lesson() {
-        this("", "", 0, 0l, false);
+        this("", "", 0, false);
     }
 
-
-    public Lesson(String name, String videoUrl, Integer time, Long courseid, Boolean isFree) {
-        this.id = Util.generateUniqueLong();
+    public Lesson(String name, String videoUrl, Integer time, Boolean isFree) {
         this.name = name;
         this.videoUrl = videoUrl;
         this.time = time;
-        this.courseid = courseid;
         this.isFree = isFree;
-    }
-    
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -59,14 +42,6 @@ public class Lesson {
 
     public void setTime(Integer time) {
         this.time = time;
-    }
-
-    public Long getCourseid() {
-        return this.courseid;
-    }
-
-    public void setCourseid(Long courseid) {
-        this.courseid = courseid;
     }
 
     public Boolean isIsFree() {

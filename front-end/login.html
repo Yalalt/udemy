@@ -171,6 +171,7 @@
         .then((response) => response.json())
         .then((result) => {
           if (result.success) {
+            document.cookie = result.token;
             localStorage.setItem("token", result.token);
             alert("Амжилттай");
           } else {

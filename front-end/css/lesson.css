@@ -23,8 +23,15 @@ h2 {
   margin-bottom: 20px;
 }
 
-video {
-  width: 100%;
+.video {
+  background-color: rgb(33,33,33);
+  height: 500px;
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .description-btn-ul {

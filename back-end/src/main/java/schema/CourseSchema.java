@@ -1,7 +1,7 @@
 package schema;
 
 public class CourseSchema {
-    private String name, imgUrl, token;
+    private String name, imgUrl;
     private Integer price, realPrice;
 
 
@@ -19,14 +19,6 @@ public class CourseSchema {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
-    }
-
-    public String getToken() {
-        return this.token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     public Integer getPrice() {

@@ -1,41 +1,29 @@
 package com.mongol.model;
 
 import java.time.LocalDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.ArrayList;
+import java.util.List;
 
-import util.Util;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "course")
 public class Course {
 
-    @Id
-    private Long id;
     private String name, imgUrl;
     private int price, realPrice;
-    private Long userid;
     private LocalDate createdDate;
+    private List<Lesson> lessonList = new ArrayList<>();
 
     public Course() {
-        this("", "", 0, 0, 0l, LocalDate.now());
+        this("", "", 0, 0, LocalDate.now());
     }
 
-    public Course(String name, String imgUrl, int price, int realPrice, Long userid, LocalDate createdDate) {
-        this.id = Util.generateUniqueLong();
+    public Course(String name, String imgUrl, int price, int realPrice, LocalDate createdDate) {
         this.name = name;
         this.imgUrl = imgUrl;
         this.price = price;
         this.realPrice = realPrice;
-        this.userid = userid;
         this.createdDate = createdDate;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -70,12 +58,8 @@ public class Course {
         this.realPrice = realPrice;
     }
 
-    public Long getUserid() {
-        return this.userid;
-    }
-
-    public void setUserid(Long userid) {
-        this.userid = userid;
+    public List<Lesson> getLessonList() {
+        return this.lessonList;
     }
 
     public LocalDate getCreatedDate() {

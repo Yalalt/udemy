@@ -66,7 +66,10 @@
     <!-- favicon end -->
     <link rel="stylesheet" href="css/main.css" />
     <link rel="stylesheet" href="css/lesson.css" />
-    <script src="https://kit.fontawesome.com/9a12ec8366.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/9a12ec8366.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <!-- Header Starting -->
@@ -106,83 +109,7 @@
 
     <!-- Header End -->
 
-    <main>
-      <h1>Sales Training: Practical Sales Techniques</h1>
-      <div class="main-bottom">
-        <div class="video-container">
-          <video controls>
-            <source src="#" />
-          </video>
-          <div class="description-btn-ul">
-            <button class="description-li-btn li-active">
-              Сургалтын талаар
-            </button>
-            <button class="description-li-btn">Багшийн талаар</button>
-          </div>
-          <div class="description">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-              vitae, vero et ipsam id, esse sequi natus quo nesciunt impedit
-              soluta. Laudantium voluptatibus aperiam sit nisi ipsam fuga
-              dolorum sunt! Lorem ipsum, dolor sit amet consectetur adipisicing
-              elit. Delectus perferendis quasi, animi aperiam libero ipsa neque
-              deleniti voluptatem laboriosam enim illo nam ratione cum
-              consectetur fugit placeat quo corporis aliquam. Lorem ipsum dolor
-              sit, amet consectetur adipisicing elit. Illum voluptate quos qui
-              veritatis et explicabo voluptas ipsum, eveniet facere porro amet
-              quibusdam quasi temporibus aliquid rerum eos ex. Excepturi,
-              suscipit. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Quisquam, amet perspiciatis nesciunt, quaerat modi quas sint
-              veniam maiores facere architecto esse, voluptatum sit explicabo
-              quod dolorem itaque! Sunt, voluptate laudantium.
-            </p>
-          </div>
-        </div>
-        <section class="content-container">
-          <h2 class="content-title">Агуулга</h2>
-          <a href="" class="content-list-btn content-active">
-            <i class="far fa-play-circle"></i>
-            <p class="lesson-title">1. Хичээлийн танилцуулга</p>
-            <p class="lesson-time">5:03</p>
-          </a>
-          <a href="" class="content-list-btn">
-            <i class="fas fa-lock"></i>
-            <p class="lesson-title">2. Хичээлийн танилцуулга</p>
-            <p class="lesson-time">15:03</p>
-          </a>
-          <a href="" class="content-list-btn">
-            <i class="fas fa-lock"></i>
-            <p class="lesson-title">3. Хичээлийн танилцуулга</p>
-            <p class="lesson-time">5:03</p>
-          </a>
-          <a href="" class="content-list-btn">
-            <i class="fas fa-lock"></i>
-            <p class="lesson-title">4. Хичээлийн танилцуулга</p>
-            <p class="lesson-time">5:03</p>
-          </a>
-          <a href="" class="content-list-btn">
-            <i class="fas fa-lock"></i>
-            <p class="lesson-title">5. Хичээлийн танилцуулга</p>
-            <p class="lesson-time">5:03</p>
-          </a>
-          <a href="" class="content-list-btn">
-            <i class="fas fa-lock"></i>
-            <p class="lesson-title">6. Хичээлийн танилцуулга</p>
-            <p class="lesson-time">5:03</p>
-          </a>
-          <a href="" class="content-list-btn">
-            <i class="fas fa-lock"></i>
-            <p class="lesson-title">7. Хичээлийн танилцуулга</p>
-            <p class="lesson-time">5:03</p>
-          </a>
-          <a href="" class="content-list-btn">
-            <i class="fas fa-lock"></i>
-            <p class="lesson-title">8. Хичээлийн танилцуулга</p>
-            <p class="lesson-time">5:03</p>
-          </a>
-        </section>
-      </div>
-    </main>
+    <main id="main"></main>
 
     <!-- Footer starting -->
 
@@ -194,5 +121,98 @@
     </footer>
 
     <!-- Footer end -->
+    <script type="text/javascript">
+      var mainDom = document.getElementById("main");
+
+      var url = new URL(window.location.href);
+      var teacherid = url.searchParams.get("teacherid");
+      var courseid = url.searchParams.get("courseid");
+      var lessonid = url.searchParams.get("lessonid") || "0";
+
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", window.localStorage.getItem("token"));
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch(
+        `http://localhost:8080/getcoursebyid?courseid=${courseid}&teacherid=${teacherid}`,
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          let lesson = "";
+          for (let idx = 0; idx < result.lessonList.length; idx++) {
+            lesson += `<a href="lesson.html?courseid=${courseid}&teacherid=${teacherid}&lessonid=${idx}" class="content-list-btn ${
+              idx == lessonid && "content-active"
+            }">
+                <i class="${
+                  result.lessonList[idx].videoUrl
+                    ? 'fa-regular fa-circle-play'
+                    : 'fa-solid fa-lock'
+                }"></i>
+                <p class="lesson-title">${idx + 1}. ${
+              result.lessonList[idx].name
+            }</p>
+                <p class="lesson-time">${Math.floor(
+                  result.lessonList[idx].time / 60
+                )}:${result.lessonList[idx].time % 60}</p>
+              </a>`;
+          }
+
+          let warningMessage = `<div class="video">Энэ сургалтыг худалдаж аваагүй эсвэл нэвтрээгүй байна. 5037889988 дансруу ₮${result.realPrice} төлбөрөө шилжүүлж, эрхээ нээж үзнэ үү.</div>`;
+
+          let body = `
+          <h1>${result.name}</h1>
+          <div class="main-bottom">
+            <div class="video-container">
+                ${
+                  result.lessonList[parseInt(lessonid)]
+                    ? result.lessonList[parseInt(lessonid)].videoUrl
+                      ? `<iframe width="100%" height="500" src="${
+                          result.lessonList[parseInt(lessonid)]
+                            ? result.lessonList[parseInt(lessonid)].videoUrl
+                            : ""
+                        }" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`
+                      : warningMessage
+                    : warningMessage
+                }
+              <div class="description-btn-ul">
+                <button class="description-li-btn li-active">
+                  Сургалтын талаар
+                </button>
+                <button class="description-li-btn">Багшийн талаар</button>
+              </div>
+              <div class="description">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+                  vitae, vero et ipsam id, esse sequi natus quo nesciunt impedit
+                  soluta. Laudantium voluptatibus aperiam sit nisi ipsam fuga
+                  dolorum sunt! Lorem ipsum, dolor sit amet consectetur adipisicing
+                  elit. Delectus perferendis quasi, animi aperiam libero ipsa neque
+                  deleniti voluptatem laboriosam enim illo nam ratione cum
+                  consectetur fugit placeat quo corporis aliquam. Lorem ipsum dolor
+                  sit, amet consectetur adipisicing elit. Illum voluptate quos qui
+                  veritatis et explicabo voluptas ipsum, eveniet facere porro amet
+                  quibusdam quasi temporibus aliquid rerum eos ex. Excepturi,
+                  suscipit. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Quisquam, amet perspiciatis nesciunt, quaerat modi quas sint
+                  veniam maiores facere architecto esse, voluptatum sit explicabo
+                  quod dolorem itaque! Sunt, voluptate laudantium.
+                </p>
+              </div>
+            </div>
+            <section class="content-container">
+              <h2 class="content-title">Агуулга</h2>
+              ${lesson}
+            </section>
+            </div>`;
+          mainDom.innerHTML = body;
+        })
+        .catch((error) => console.log("error", error));
+    </script>
   </body>
 </html>

@@ -2,10 +2,10 @@ package schema;
 
 public class LessonSchema {
 
-    private String name, videoUrl, token;
+    private String name, videoUrl;
     private Integer time;
     private Boolean isFree;
-    private Long courseid;
+    private Integer courseid;
 
     public String getName() {
         return this.name;
@@ -43,20 +43,11 @@ public class LessonSchema {
         this.isFree = isFree;
     }
 
-    public Long getCourseid() {
+    public Integer getCourseid() {
         return this.courseid;
     }
 
-    public void setCourseid(Long courseid) {
+    public void setCourseid(Integer courseid) {
         this.courseid = courseid;
     }
-
-    public String getToken() {
-        return this.token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
 }

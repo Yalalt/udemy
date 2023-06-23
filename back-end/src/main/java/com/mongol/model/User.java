@@ -1,5 +1,8 @@
 package com.mongol.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,11 +14,12 @@ public class User {
     private Long id;
     private String name, email, pass, token, salt;
     private Boolean isTeacher;
+    private List<Course> createdCourseList = new ArrayList<>();
+    private List<Purchase> purchaseList = new ArrayList<>();
 
     public User() {
         this("", "", "", "", false);
     }
-
 
     public User(String name, String email, String pass, String token, Boolean isTeacher) {
         this.id = Util.generateUniqueLong();
@@ -25,7 +29,6 @@ public class User {
         this.token = token;
         this.isTeacher = isTeacher;
     }
-
 
     public Long getId() {
         return this.id;
@@ -67,10 +70,6 @@ public class User {
         this.token = token;
     }
 
-    public Boolean isIsTeacher() {
-        return this.isTeacher;
-    }
-
     public Boolean getIsTeacher() {
         return this.isTeacher;
     }
@@ -79,13 +78,20 @@ public class User {
         this.isTeacher = isTeacher;
     }
 
-
     public String getSalt() {
         return this.salt;
     }
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public List<Course> getCreatedCourseList() {
+        return this.createdCourseList;
+    }
+
+    public List<Purchase> getPurchasesList() {
+        return this.purchaseList;
     }
 
 }
