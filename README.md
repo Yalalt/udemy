@@ -1,2 +1,4 @@
 #### Spring framework and Simple study web
-- Simple online lesson Backend API
+- Project Mean is simply an online lesson web
+- Front end part is made simple using html css ready template.
+- Backend API development was done using Java Sprint Boot.
